@@ -1,7 +1,6 @@
 #!/bin/bash
 
 _HOSTNAME=client002
-cat wireshark.pub >> /home/vagrant/.ssh/authorized_keys
 
 echo "$_HOSTNAME" > /etc/hostname
 /bin/hostname -b $_HOSTNAME
@@ -67,3 +66,6 @@ cat > /etc/krb5.conf << EOF
   dns_lookup_kdc = true
 EOF
 
+cat /vagrant/wireshark.pub >> /home/vagrant/.ssh/authorized_keys
+dpkg-reconfigure openssh-server
+echo "UseDNS no" >> /etc/ssh/sshd_config
