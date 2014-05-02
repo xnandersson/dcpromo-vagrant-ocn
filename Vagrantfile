@@ -22,4 +22,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       autoconfig: false
   end
 
+  config.vm.define "ldap" do |ldap|
+    ldap.vm.provision :shell, path: "ldap.sh"
+    ldap.vm.network "private_network", ip: "192.168.33.3",
+      autoconfig: false
+  end 
+
 end
