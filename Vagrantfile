@@ -17,8 +17,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define "client" do |client|
-    dc.vm.provision :shell, path: "client.sh"
-    dc.vm.network "private_network", ip: "192.168.33.100",
+    client.vm.provision :shell, path: "client.sh"
+    client.vm.network "private_network", ip: "192.168.33.100",
       autoconfig: false
   end
 
