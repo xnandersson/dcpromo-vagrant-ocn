@@ -39,11 +39,7 @@ EOF
 /usr/bin/debconf-set-selections /tmp/krb5-config.debconf
 
 apt-get update
-apt-get install realmd adcli -y
-apt-get install krb5-user -y
-apt-get install smbclient -y
-apt-get install ldap-utils -y
-apt-get install nmap tshark tcpdump -y
+apt-get install realmd adcli krb5-user smbclient ldap-utils nmap tshark tcpdump -y
 
 cat > /etc/ldap/ldap.conf << EOF
 BASE	DC=OPENFORCE,DC=ORG
@@ -66,6 +62,4 @@ cat > /etc/krb5.conf << EOF
   dns_lookup_kdc = true
 EOF
 
-cat /vagrant/wireshark.pub >> /home/vagrant/.ssh/authorized_keys
-dpkg-reconfigure openssh-server
-echo "UseDNS no" >> /etc/ssh/sshd_config
+#echo "UseDNS no" >> /etc/ssh/sshd_config
