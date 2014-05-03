@@ -11,19 +11,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
 
   config.vm.define "dc" do |dc|
-    dc.vm.provision :shell, path: "dcpromo-repo.sh"
+    dc.vm.provision :shell, path: "provisioning-dc.sh"
     dc.vm.network "private_network", ip: "192.168.33.2",
       autoconfig: false
   end
 
-  config.vm.define "client" do |client|
-    client.vm.provision :shell, path: "client.sh"
-    client.vm.network "private_network", ip: "192.168.33.100",
+  config.vm.define "realm" do |client|
+    realm.vm.provision :shell, path: "provisioning-realm.sh"
+    realm.vm.network "private_network", ip: "192.168.33.100",
       autoconfig: false
   end
 
   config.vm.define "ldap" do |ldap|
-    ldap.vm.provision :shell, path: "ldap.sh"
+    ldap.vm.provision :shell, path: "provisioning-ldap.sh"
     ldap.vm.network "private_network", ip: "192.168.33.3",
       autoconfig: false
   end 

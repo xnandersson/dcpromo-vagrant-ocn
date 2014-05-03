@@ -1,0 +1,23 @@
+#!/bin/bash 
+#
+# vshark
+#
+# 2014 Niklas Andersson <niklas.andersson at openforce.se>
+#
+
+HOST=$1
+
+if [ -z "${HOST}" ]; then
+  echo "Syntax: vshark [client]"
+  exit 2
+fi
+
+IPADDR=$(grep ${HOST}.vm.network Vagrantfile | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}')
+
+if [ -z "${IPADDR}" ]; then
+  echo "Error: unknown host ${HOST}"
+  exit 2
+fi
+
+echo "Trying ${HOST} with ipaddr ${IPADDR}"
+ssh vagrant@${IPADDR} -i ~/.vagrant.d/insecure_private_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no sudo tcpdump -i eth1 -U -s0 -w - 'not port 22' | wireshark -k -i -
