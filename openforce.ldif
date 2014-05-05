@@ -1,0 +1,50 @@
+dn: dc=openforce,dc=org
+description: Openforce.org
+dc: openforce
+o: Openforce.org
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+
+# Subtree for users
+dn: ou=Users,dc=openforce,dc=org
+ou: Users
+description: Openforce.org Users
+objectClass: organizationalUnit
+
+# Subtree for groups
+dn: ou=Groups,dc=openforce,dc=org
+ou: Groups
+description: Openforce.org Groups
+objectClass: organizationalUnit
+
+# Subtree for system accounts
+dn: ou=System,dc=openforce,dc=org
+ou: System
+description: Special accounts used by software applications.
+objectClass: organizationalUnit
+
+##
+## USERS
+##
+
+# Niklas Andersson
+dn: uid=nandersson,ou=Users,dc=openforce,dc=org
+ou: Users
+# Name info
+uid: nandersson
+cn: Niklas Andersson
+sn: Andersson
+givenName: Niklas
+displayName: Niklas Andersson
+# Work info
+title: Consultant
+description: Consultant Open Source Software
+mail: niklas.andersson@openforce.se
+mail: niklas.andersson@ericsson.com
+telephoneNumber: +34 651 757 188
+userPassword: secret
+# Object Classes:
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
