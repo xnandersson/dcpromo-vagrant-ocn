@@ -39,14 +39,15 @@ EOF
 /usr/bin/debconf-set-selections /tmp/krb5-config.debconf
 
 
-echo "deb http://ddebs.ubuntu.com $(lsb_release -cs) main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list.d/ddebs.list
-echo "deb http://ddebs.ubuntu.com $(lsb_release -cs)-updates main restricted universe multiverse
-deb http://ddebs.ubuntu.com $(lsb_release -cs)-security main restricted universe multiverse
-deb http://ddebs.ubuntu.com $(lsb_release -cs)-proposed main restricted universe multiverse" | \
-sudo tee -a /etc/apt/sources.list.d/ddebs.list
-
+#echo "deb http://ddebs.ubuntu.com $(lsb_release -cs) main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list.d/ddebs.list
+#echo "deb http://ddebs.ubuntu.com $(lsb_release -cs)-updates main restricted universe multiverse
+#deb http://ddebs.ubuntu.com $(lsb_release -cs)-security main restricted universe multiverse
+#deb http://ddebs.ubuntu.com $(lsb_release -cs)-proposed main restricted universe multiverse" | \
+#sudo tee -a /etc/apt/sources.list.d/ddebs.list
+#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 428D7C01
+#apt-get install realmd-dbgsym adcli-dbgsym krb5-user smbclient ldap-utils nmap tshark tcpdump -y
 apt-get update
-apt-get install realmd-dbgsym adcli-dbgsym krb5-user smbclient ldap-utils nmap tshark tcpdump -y
+apt-get install realmd adcli krb5-user smbclient ldap-utils nmap tshark tcpdump -y
 
 cat > /etc/ldap/ldap.conf << EOF
 BASE	DC=OPENFORCE,DC=ORG

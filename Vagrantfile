@@ -28,4 +28,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       autoconfig: false
   end 
 
+  config.vm.define "realmd_build" do |realmd_build|
+    realmd_build.vm.provision :shell, path: "provisioning-realmd_build.sh"
+    realmd_build.vm.network "private_network", ip: "192.168.33.4",
+      autoconfig:true 
+  end
+
 end
