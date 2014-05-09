@@ -1,14 +1,17 @@
 #!/bin/bash
 #
-# Get build dependencies
+# Update repo
 #
 apt-get update
-apt-get build-dep realmd -y
 #
 # Get source code
 #
 apt-get install git -y
 git clone git://anongit.freedesktop.org/realmd/realmd
+#
+# Get build dependencies
+#
+apt-get build-dep realmd -y
 #
 # We have automake 1.14 (newer than latest in source code), 
 # so we must add it to autogen.sh, if not we get error.
@@ -26,3 +29,5 @@ sh autogen.sh \
   --sysconfdir=/etc \
   --libdir=/usr/lib
 make
+mkdir /vagrant/build
+cp realmd /vagrant/build

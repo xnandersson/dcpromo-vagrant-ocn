@@ -49,6 +49,18 @@ EOF
 apt-get update
 apt-get install realmd adcli krb5-user smbclient ldap-utils nmap tshark tcpdump -y
 
+#
+# As realmd 0.15.0 is broken, we must replace with our own
+# compiled binary.
+#
+cp /vagrant/build/realmd /usr/lib/reamld/
+
+#
+# As realmd 0.15.0 is broken, we must replace with our own
+# compiled binary.
+#
+cp /vagrant/build/realmd /usr/lib/reamld/
+
 cat > /etc/ldap/ldap.conf << EOF
 BASE	DC=OPENFORCE,DC=ORG
 URI	ldap://dc.openforce.org
