@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_HOSTNAME=client002
+_HOSTNAME=client006
 
 echo "$_HOSTNAME" > /etc/hostname
 /bin/hostname -b $_HOSTNAME
@@ -53,7 +53,7 @@ apt-get install realmd adcli krb5-user smbclient ldap-utils nmap tshark tcpdump 
 # As realmd 0.15.0 is broken, we must replace with our own
 # compiled binary.
 #
-cp /vagrant/build/realmd /usr/lib/reamld/
+cp /vagrant/build/realmd /usr/lib/realmd/
 
 cat > /etc/ldap/ldap.conf << EOF
 BASE	DC=OPENFORCE,DC=ORG
@@ -75,5 +75,6 @@ cat > /etc/krb5.conf << EOF
   dns_lookup_realm = false
   dns_lookup_kdc = true
 EOF
-
-
+#
+# We do the join with: realm -v --client-software=sssd --membership-software=adcli OPENFORCE.ORG
+#apt-get install sssd-tools sssd libnss-sss libpam-sss adcli samba-common-bin -y
